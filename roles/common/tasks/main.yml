@@ -1,0 +1,38 @@
+---
+- block:
+  - pacman: name=zsh
+  - pacman: name=fcitx
+  - pacman: name=fcitx-mozc
+  - pacman: name=golang
+  - pacman: name=vim
+  - pacman: name=nodejs
+  - pacman: name=docker
+  - pacman: name=rxvt-unicode
+  - pacman: name=tmux
+  become: yes
+  become_method: sudo
+- name: make .vimundo directory
+  file: path=/home/shunsuke/.vimundo state=directory
+- git: repo=git@github.com:kics/vim-conf.git
+       dest=/home/shunsuke/.vim-conf
+- file: src=/home/shunsuke/.vim-conf/.vim
+        dest=/home/shunsuke/.vim
+        state=link
+- file: src=/home/shunsuke/.vim-conf/.vimrc
+        dest=/home/shunsuke/.vimrc
+        state=link
+- git: repo=git@github.com:kics/zsh-config.git
+       dest=/home/shunsuke/.zsh
+- file: src=/home/shunsuke/.zsh/.zshrc
+        dest=/home/shunsuke/.zshrc
+        state=link
+- git: repo=git@github.com:kics/xorg-conf.git
+       dest=/home/shunsuke/.xorg
+- file: src=/home/shunsuke/.xorg/.Xdefault
+        dest=/home/shunsuke/.Xdefault
+        state=link
+- git: repo=git@github.com:kics/tmux-conf.git
+       dest=/home/shunsuke/.tmux
+- file: src=/home/shunsuke/.tmux/.tmux.conf
+        dest=/home/shunsuke/.tmux.conf
+        state=link

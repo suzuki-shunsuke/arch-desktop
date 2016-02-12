@@ -1,0 +1,6 @@
+---
+- pacman: name=xorg-server
+- pacman: name=console-tdm
+- pacman: name=xmonad
+- pacman: name=xmonad-contrib
+- pacman: name=xmobar

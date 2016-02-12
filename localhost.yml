@@ -1,0 +1,7 @@
+---
+# playbook for webserver tier
+- hosts: webserver
+  remote_user: developer
+  roles:
+    - make-developer
+    - install-basic-packages

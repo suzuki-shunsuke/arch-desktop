@@ -1,0 +1,16 @@
+---
+- name: make developer
+  user: name={{item}} groups=wheel,docker,developers
+  with_items: "{{users}}"
+  become: yes
+  become_method: sudo
+- name: make .ssh directory
+  file: path=/home/{{item}}/.ssh state=directory mode=0700 owner={{item}}
+  with_items: "{{users}}"
+  become: yes
+  become_method: sudo
+- name: copy authorized_keys
+  copy: src=roles/make-developer/files/{{item}}/id_rsa.pub dest=/home/{{item}}/.ssh/authorized_keys mode=0600 owner={{item}}
+  with_items: "{{users}}"
+  become: yes
+  become_method: sudo

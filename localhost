@@ -1,0 +1,8 @@
+# production inventory file
+# http://docs.ansible.com/ansible/intro_inventory.html
+# [グループ名]
+# ホスト名
+# ...
+
+[localhost]
+localhost
